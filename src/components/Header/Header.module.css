@@ -1,0 +1,19 @@
+.header {
+    grid-area: h;
+    background-color: #1ab6d181;
+}
+.header img {
+    height: 150px;
+}
+  
+@media (max-width: 650px) {
+    .header img {
+        height: 100px;
+    }
+}
+@media (max-width: 450px) {
+    .header img {
+        height: 75px;
+    }
+}
+  
