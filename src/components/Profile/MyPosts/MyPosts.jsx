@@ -3,7 +3,6 @@ import classes from "./MyPosts.module.css"
 import Post from "../Post/Post";
 
 const MyPosts = (props) => {
-
     let postsElements = props.posts
         .map(item => <Post
             key={item.id}
@@ -16,13 +15,11 @@ const MyPosts = (props) => {
 
     const addPost = () => {
         props.addPost();
-        // props.dispatch(addPostActionCreator());
     }
 
     const textChange = () => {
         let text = newPostElement.current.value;
         props.textChange(text);
-        // props.dispatch(textChangeActionCreator(text));
     }
 
     return (
