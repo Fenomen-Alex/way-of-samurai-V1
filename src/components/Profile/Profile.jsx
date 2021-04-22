@@ -7,12 +7,7 @@ const Profile = () => {
   return (
     <div>
       <ProfileInfo />
-      <MyPostsContainer
-          // store={props.store}
-          // posts={props.store.getState().profilePage.posts}
-          // dispatch={props.dispatch}
-          // text={props.profilePage.newPostText}
-      />
+      <MyPostsContainer />
     </div>
   );
 };
