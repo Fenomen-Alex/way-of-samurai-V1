@@ -5,18 +5,14 @@ import ava from '../../assets/images/user_ava.png';
 
 class UsersC extends React.Component {
 
-  getUsers = () => {
-    if (this.props.users.length === 0) {
-      // eslint-disable-next-line no-unused-expressions
-      axios.get("https://social-network.samuraijs.com/api/1.0/users")
-        .then(data => this.props.setUsers(data.data.items));
-    }
+  componentDidMount() {
+    axios.get("https://social-network.samuraijs.com/api/1.0/users")
+      .then(data => this.props.setUsers(data.data.items));
   }
 
   render() {
     return (
       <div>
-        <button onClick={()=>this.getUsers}>Get Users</button>
         {
           this.props.users.map(user => {
             return <div key={user.id}>
@@ -25,19 +21,19 @@ class UsersC extends React.Component {
                 <img
                   src={user.photos.small !== null
                     ? user.photos.small
-                    : ava }
+                    : ava}
                   className={styles.photo}
                   alt="avatar"
                 />
               </div>
               <div>
-                { user.followed
+                {user.followed
                   ? <button
-                    onClick={()=>this.props.unfollow(user.id)}>
+                    onClick={() => this.props.unfollow(user.id)}>
                     Unfollow
                   </button>
                   : <button
-                    onClick={()=>this.props.follow(user.id)}>
+                    onClick={() => this.props.follow(user.id)}>
                     Follow
                   </button>}
               </div>
