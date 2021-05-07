@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './Users.module.css';
 import ava from '../../assets/images/user_ava.png';
-import {NavLink} from "react-router-dom";
+import {NavLink} from 'react-router-dom';
+import {follow, unfollow} from "../../api/api";
 
 const Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -14,12 +15,12 @@ const Users = (props) => {
     <div>
       <div>
         {/* eslint-disable-next-line array-callback-return */}
-        {pages.map(p => {
+        {pages.map((p, index) => {
           if (p <= 25) {
             return (
-              <span
+              <span key={index}
                 onClick={() => props.onPageChange(p)}
-                className={props.currentPage === p && styles.selected}
+                className={props.currentPage === p ? styles.selected : ""}
               >{p}
             </span>
             )
@@ -45,11 +46,31 @@ const Users = (props) => {
               <div>
                 {user.followed
                   ? <button
-                    onClick={() => props.unfollow(user.id)}>
+                    disabled={props.followingInProgress.some(id => id === user.id)}
+                    onClick={() => {
+                      props.isFollowing(true, user.id)
+                      unfollow(user.id)
+                        .then(data => {
+                          if (data.resultCode === 0) {
+                            props.unfollow(user.id)
+                          }
+                          props.isFollowing(false, user.id)
+                        })
+                    }}>
                     Unfollow
                   </button>
                   : <button
-                    onClick={() => props.follow(user.id)}>
+                    disabled={props.followingInProgress.some(id => id === user.id)}
+                    onClick={() => {
+                      props.isFollowing(true, user.id)
+                      follow(user.id)
+                        .then(data => {
+                          if (data.resultCode === 0) {
+                            props.follow(user.id)
+                          }
+                          props.isFollowing(false, user.id)
+                        })
+                    }}>
                     Follow
                   </button>}
               </div>

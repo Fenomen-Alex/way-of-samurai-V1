@@ -4,7 +4,7 @@ import loader from '../../../assets/images/icon-ajax-loading-spinner.svg';
 const Preloader = () => {
   return (
     <div>
-      <img src={loader} />
+      <img src={loader} alt="loading..." />
     </div>
   );
 };
