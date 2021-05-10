@@ -1,3 +1,5 @@
+import {usersAPI} from '../api/api';
+
 const ADD_POST = 'ADD-POST';
 const UPDATE = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -48,3 +50,12 @@ export const textChangeActionCreator = (text) =>
     ({type: UPDATE, newText: text});
 
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+
+export const getUserProfile = (userId) => {
+    return (dispatch) => {
+        usersAPI.getUser(userId)
+          .then(data => {
+              dispatch(setUserProfile(data));
+          });
+    }
+}
