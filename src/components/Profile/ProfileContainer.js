@@ -1,8 +1,12 @@
+// noinspection JSUnusedGlobalSymbols,NpmUsedModulesInstalled
+
 import React, {Component} from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
 import {getUserProfile} from '../../redux/profile-reducer';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import withAuthRedirect from "../HOC/withAuthRedirect";
+import {compose} from "redux";
 
 class ProfileContainer extends Component {
 
@@ -23,6 +27,8 @@ let mapStateToProps = (state) => ({
   profile: state.profilePage.profile
 })
 
-const ProfileContainerWithUrl = withRouter(ProfileContainer);
-
-export default connect(mapStateToProps, {getUserProfile})(ProfileContainerWithUrl);
+export default compose(
+  withAuthRedirect,
+  withRouter,
+  connect(mapStateToProps, {getUserProfile})
+)(ProfileContainer);
