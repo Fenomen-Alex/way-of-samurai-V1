@@ -4,19 +4,14 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import AddMessageForm from "./AddMessageForm";
 
 const Dialogs = (props) => {
     let state = props.dialogsPage;
 
-    let newMessageText = state.newMessageText;
-
-    const sendMessage = () => {
-        props.sendMessage();
-    }
-
-    const textChange = (e) => {
-        let text = e.target.value;
-        props.textChange(text);
+    const sendMessage = (values) => {
+        console.log(values);
+        props.sendMessage(values.newMessageText);
     }
 
     return (
@@ -36,24 +31,7 @@ const Dialogs = (props) => {
                     )}
                 </div>
             </div>
-            <div>
-                <div>
-                    <textarea
-                        placeholder="Enter your message"
-                        onChange={textChange}
-                        value={newMessageText}
-                        autoFocus
-                        onFocus={(e) => {
-                            let val = e.target.value;
-                            e.target.value = '';
-                            e.target.value = val;
-                        }}
-                    />
-                </div>
-                <div>
-                    <button onClick={sendMessage} >Send</button>
-                </div>
-            </div>
+            <AddMessageForm onSubmit={sendMessage} />
         </div>
     )
 }

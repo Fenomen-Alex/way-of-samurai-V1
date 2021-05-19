@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Users.module.css';
 import ava from '../../assets/images/user_ava.png';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);

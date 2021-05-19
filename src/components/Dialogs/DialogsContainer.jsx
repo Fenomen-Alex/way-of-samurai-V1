@@ -1,6 +1,4 @@
-// noinspection JSUnusedGlobalSymbols,NpmUsedModulesInstalled
-
-import {sendMessageActionCreator, messageTextActionCreator} from "../../redux/dialogs-reducer"
+import { sendMessageActionCreator } from "../../redux/dialogs-reducer"
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import withAuthRedirect from "../HOC/withAuthRedirect";
@@ -14,11 +12,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        sendMessage: () => {
-            dispatch(sendMessageActionCreator());
-        },
-        textChange: (text) => {
-            dispatch(messageTextActionCreator(text));
+        sendMessage: (newMessageText) => {
+            dispatch(sendMessageActionCreator(newMessageText));
         }
     }
 }

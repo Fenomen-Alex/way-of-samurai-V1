@@ -5,7 +5,7 @@ import { Form, Field } from 'react-final-form';
 const LoginForm = () => {
   return (
     <Form
-      onSubmit={ formData => {
+      onSubmit={ (formData) => {
       console.log(formData)
       // return formData;
     }}>
