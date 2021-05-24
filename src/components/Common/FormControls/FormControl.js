@@ -14,11 +14,11 @@ const FormControl = (props) => {
 };
 
 export const Inputarea = (props) => {
-  const { input, restProps } = props;
+  const { input } = props;
   return <FormControl {...props}><input autoComplete="on" {...input} {...props}/></FormControl>
 };
 
 export const Textarea = (props) => {
-  const { input, restProps } = props;
+  const { input } = props;
   return <FormControl {...props}><textarea cols={50} rows={10} {...input} {...props}/></FormControl>
 };

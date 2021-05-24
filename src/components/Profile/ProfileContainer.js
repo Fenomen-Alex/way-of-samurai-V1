@@ -30,7 +30,7 @@ class ProfileContainer extends Component {
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
-  userId: state.auth.userId,
+  userId: state.auth.id,
   isAuth: state.auth.isAuth
 })
 
