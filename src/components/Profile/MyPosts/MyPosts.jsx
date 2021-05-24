@@ -11,8 +11,8 @@ const MyPosts = (props) => {
                 likeCounter={item.likes}
             />
         );
-    const addPost = (values) => {
-        props.addPost(values.newPostText);
+    const addPost = async (values) => {
+        await props.addPost(values.newPostText);
     }
 
     return (

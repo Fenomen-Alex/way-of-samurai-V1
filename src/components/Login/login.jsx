@@ -20,8 +20,8 @@ const LoginForm = (props) => {
   return (
     <Form
       onSubmit={onSubmit}>
-      {({handleSubmit, submitError, submitFailed}) => (
-        <form onSubmit={handleSubmit}>
+      {({handleSubmit, reset, submitError, submitFailed}) => (
+        <form onSubmit={(event) => handleSubmit(event).then(reset)}>
           <div>
             <Field
               placeholder="Email"
