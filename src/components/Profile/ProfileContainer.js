@@ -11,10 +11,8 @@ import {compose} from "redux";
 class ProfileContainer extends Component {
 
   componentDidMount() {
-    let userId = this.props.match.params.userId;
-    if (!userId) userId = 16970;
-    this.props.getUserProfile(userId);
-    this.props.getStatus(userId);
+    this.props.getUserProfile(this.props.userId);
+    this.props.getStatus(this.props.userId);
   }
 
   render() {
@@ -31,11 +29,12 @@ class ProfileContainer extends Component {
 
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
-  status: state.profilePage.status
+  status: state.profilePage.status,
+  userId: state.auth.userId,
+  isAuth: state.auth.isAuth
 })
 
 export default compose(
-  withAuthRedirect,
-  withRouter,
+  withRouter, withAuthRedirect,
   connect(mapStateToProps, { getUserProfile, getStatus, updateStatus})
 )(ProfileContainer);

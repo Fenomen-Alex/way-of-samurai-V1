@@ -3,19 +3,19 @@ import styles from './FormControl.module.css';
 
 const FormControl = (props) => {
   const { meta } = props;
-  const hasError = meta.touched && meta.error;
+  const hasError = meta.touched && (meta.error || meta.submitFailed);
   return (
     <div
       className={styles.formControl + " " + (hasError ? styles.error : "")}>
       {props.children}
-      {hasError && <span>{meta.error}</span>}
+      {hasError && <span>{meta.error || meta.submitError}</span>}
     </div>
   );
 };
 
 export const Inputarea = (props) => {
   const { input, restProps } = props;
-  return <FormControl {...props}><input {...input} {...props}/></FormControl>
+  return <FormControl {...props}><input autoComplete="on" {...input} {...props}/></FormControl>
 };
 
 export const Textarea = (props) => {

@@ -1,6 +1,6 @@
-import {authAPI} from "../api/api";
+import {authAPI} from '../api/api';
 
-const SET_USER_DATA = "SET-USER-DATA";
+const SET_USER_DATA = 'SET-USER-DATA';
 
 let initialState = {
   id: null,
