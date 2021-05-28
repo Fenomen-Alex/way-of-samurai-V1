@@ -1,29 +1,25 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const ProfileStatusWithHooks = props => {
-  const { editMode, setEditMode } = useState(false);
-  const { status, setStatus } = useState(props.status)
+  const [ editMode, setEditMode ] = useState(false);
+  const [ status, setStatus ] = useState(props.status);
 
    const toggleStatus = () => {
-    setEditMode({editMode: !editMode});
-    props.updateStatus(status);
+     setEditMode(!editMode);
+     props.updateStatus(status);
   }
 
   const handleFocus = (event) => {
     event.target.select();
   }
   const onStatusChange = (e) => {
-    setStatus({ status: e.currentTarget.value })
+    setStatus(e.target.value)
   }
 
-  // componentDidUpdate(prevProps, prevState, snapshot) {
-  //   if (prevProps.status !== this.props.status) {
-  //     this.setState({
-  //       status: this.props.status
-  //     });
-  //   }
-  // }
-
+  useEffect(() => {
+    setStatus(props.status)
+    }, [props.status]
+  )
 
     return (
       <>
@@ -31,19 +27,19 @@ const ProfileStatusWithHooks = props => {
           !editMode &&
           <div>
             <span
-              onDoubleClick={ () => {toggleStatus()} }
+              onDoubleClick={ () => toggleStatus() }
             >
               {props.status || "-----"}
             </span>
           </div>
         }
         {
-          this.state.editMode && <div>
+          editMode && <div>
             <input
-              onChange={onStatusChange}
-              onFocus={handleFocus}
+              onChange={(e) => onStatusChange(e)}
+              onFocus={(e) => handleFocus(e)}
               autoFocus
-              onBlur={ () => {toggleStatus()}}
+              onBlur={ () => toggleStatus()}
               value={status}
             />
           </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './ProfileInfo.module.css'
 import Preloader from '../../Common/Preloader/preloader';
 import ava from '../../../assets/images/user_ava.png';
-import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -21,7 +21,7 @@ const ProfileInfo = (props) => {
                 ? <img src={props.profile.photos.large} alt="ava" />
                 : <img src={ava} alt="ava" />
               }
-              <ProfileStatus
+              <ProfileStatusWithHooks
                 status={props.status}
                 updateStatus={props.updateStatus}
               />
