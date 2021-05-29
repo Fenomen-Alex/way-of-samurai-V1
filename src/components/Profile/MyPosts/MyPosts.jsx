@@ -3,7 +3,7 @@ import classes from './MyPosts.module.css';
 import Post from '../Post/Post';
 import AddNewPostForm from "./AddNewPostForm";
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
     let postsElements = props.posts
         .map(item => <Post
                 key={item.id}
@@ -24,6 +24,6 @@ const MyPosts = (props) => {
             </div>
         </div>
     );
-};
+});
 
 export default MyPosts;

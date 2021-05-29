@@ -26,30 +26,26 @@ export default authReducer;
 export const setUserData = (id, email, login, isAuth) =>
   ({type: SET_USER_DATA, payload: {id, email, login, isAuth}});
 
-export const getUserData = () => (dispatch) => {
-  return authAPI.me()
-    .then(res => {
-      if (res.resultCode === 0) {
-        let {email, id, login,} = res.data;
-        dispatch(setUserData(id, email, login, true));
-      }
-    })
+export const getUserData = () => async (dispatch) => {
+  const res = await authAPI.me()
+  if (res.resultCode === 0
+  ) {
+    let {email, id, login,} = res.data;
+    dispatch(setUserData(id, email, login, true));
+  }
 }
 
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-  return authAPI.login(email, password, rememberMe)
-    .then(res => {
+export const login = (email, password, rememberMe) => async (dispatch) => {
+  const res = await authAPI.login(email, password, rememberMe)
       if (res.data.resultCode === 0) {
         dispatch(getUserData());
       }
-    })
 }
 
-export const logout = () => (dispatch) => {
-  authAPI.logout().then(res => {
+export const logout = () => async (dispatch) => {
+  const res = await authAPI.logout()
     if (res.data.resultCode === 0) {
       dispatch(setUserData(null, null, null, false));
     }
-  })
 }

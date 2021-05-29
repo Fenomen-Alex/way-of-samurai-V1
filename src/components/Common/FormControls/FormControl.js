@@ -1,14 +1,16 @@
 import React from 'react';
 import styles from './FormControl.module.css';
+import {Field} from "react-final-form";
+import {composeValidators} from "../../../utils/validators";
 
-const FormControl = (props) => {
-  const { meta } = props;
-  const hasError = meta.touched && (meta.error || meta.submitFailed);
+const FormControl = ({ meta, children }) => {
+  const { touched, error, submitFailed, submitError } = meta;
+  const hasError = touched && (error || submitFailed);
   return (
     <div
       className={styles.formControl + " " + (hasError ? styles.error : "")}>
-      {props.children}
-      {hasError && <span>{meta.error || meta.submitError}</span>}
+      {children}
+      {hasError && <span>{error || submitError}</span>}
     </div>
   );
 };
@@ -22,3 +24,15 @@ export const Textarea = (props) => {
   const { input } = props;
   return <FormControl {...props}><textarea cols={50} rows={10} {...input} {...props}/></FormControl>
 };
+
+export const createField = ( placeholder, name, component, [...validators], props ={}, text = "") => (
+  <div>
+    <Field
+      placeholder={placeholder}
+      name={name}
+      component={component}
+      validate={composeValidators(...validators)}
+      {...props}
+    /> {text}
+  </div>
+)

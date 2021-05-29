@@ -6,18 +6,21 @@ import {
   follow, requestUsers, toggleIsFollowing, unfollow
 } from '../../redux/users-reducer';
 import Preloader from '../Common/Preloader/preloader';
-import { usersSuperSelector } from "../../redux/users-selectors";
+import {usersSuperSelector} from "../../redux/users-selectors";
+import {useEffect} from "react";
 
 const UsersContainer = (props) => {
-  if (props.users.length === 0) {
-    props.getUsers(props.currentPage, props.pageSize);
-  }
+  const { getUsers, currentPage, pageSize, isFetching } = props;
+  useEffect(() => {
+    getUsers(currentPage, pageSize);
+  }, [])
+
   const onPageChange = (p) => {
-    props.getUsers(p, props.pageSize);
+    getUsers(p, pageSize);
   }
   return <>
-    {props.isFetching ? <Preloader/> : null}
-    <Users {...props} onPageChange={onPageChange} />
+    {isFetching ? <Preloader/> : null}
+    <Users {...props} onPageChange={onPageChange}/>
   </>
 }
 
