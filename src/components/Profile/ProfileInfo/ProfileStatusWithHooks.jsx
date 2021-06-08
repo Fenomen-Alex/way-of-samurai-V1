@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 
-const ProfileStatusWithHooks = props => {
+const ProfileStatusWithHooks = ({updateStatus, ...props}) => {
   const [ editMode, setEditMode ] = useState(false);
   const [ status, setStatus ] = useState(props.status);
 
    const toggleStatus = () => {
      setEditMode(!editMode);
-     props.updateStatus(status);
+     updateStatus(status);
   }
 
   const handleFocus = (event) => {
