@@ -8,7 +8,7 @@ const Users = ({currentPage, totalUsersCount, pageSize, onPageChange, users, fol
     <div>
       <Pagination
         currentPage={currentPage}
-        totalUsersCount={totalUsersCount}
+        totalItemsCount={totalUsersCount}
         pageSize={pageSize}
         onPageChange={onPageChange}
       />
