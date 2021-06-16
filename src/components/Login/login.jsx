@@ -9,10 +9,10 @@ import {Redirect} from 'react-router-dom';
 import {FORM_ERROR} from 'final-form';
 import styles from '../Common/FormControls/FormControl.module.css';
 
-const LoginForm = ({login}) => {
+const LoginForm = ({login, captchaUrl}) => {
   const onSubmit = (formData) => {
     const {email, password, rememberMe} = formData;
-    login(email, password, rememberMe);
+    login(email, password, rememberMe, captchaUrl);
     return {
       [FORM_ERROR]: 'Incorrect email or password'
     }
@@ -25,6 +25,9 @@ const LoginForm = ({login}) => {
           {createField("Email", "email", Inputarea, [required, maxLengthCreator(30)],)}
           {createField("Password", "password", Inputarea, [required, maxLengthCreator(16)], {type: "password"})}
           {createField(null, "rememberMe", Inputarea, [],{type: "checkbox"}, "Remember me")}
+          { captchaUrl && <img src={captchaUrl} alt="captcha" />}
+          { captchaUrl &&  createField("Symbols from image", "captcha", Inputarea, [required]) }
+
           <div>
             <button>Login</button>
           </div>
@@ -35,7 +38,7 @@ const LoginForm = ({login}) => {
 }
 ;
 
-const Login = ({isAuth, login}) => {
+const Login = ({isAuth, login, captchaUrl}) => {
 
   if (isAuth) {
     return <Redirect to="/profile"/>
@@ -43,14 +46,15 @@ const Login = ({isAuth, login}) => {
   return (
     <div>
       <h1>Login</h1>
-      <LoginForm login={login}/>
+      <LoginForm login={login} captchaUrl={captchaUrl} />
     </div>
   )
 }
 
 const mapStateToProps = (state) => (
 {
-  isAuth: state.auth.isAuth
+  isAuth: state.auth.isAuth,
+  captchaUrl: state.auth.captchaUrl
 }
 )
 
