@@ -2,9 +2,7 @@ import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import {BrowserRouter, Route, withRouter} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersCont from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/login";
 import {connect, Provider} from "react-redux";
@@ -12,6 +10,10 @@ import {compose} from "redux";
 import Preloader from "./components/Common/Preloader/preloader";
 import {initialize} from "./redux/app-reducer";
 import store from "./redux/redux-store";
+import withSuspense from "./components/HOC/withSuspense";
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 
 class SamuraiJSApp extends React.Component {
 
@@ -29,10 +31,10 @@ class SamuraiJSApp extends React.Component {
         <Navbar/>
         <div className="app-wrapper-content">
           <Route path="/dialogs"
-                 component={() => <DialogsContainer/>}
+                 component={withSuspense(DialogsContainer)}
           />
           <Route path="/profile/:userId?"
-                 component={() => <ProfileContainer/>}
+                 component={withSuspense(ProfileContainer)}
           />
           <Route path="/users"
                  component={() => <UsersCont/>}
