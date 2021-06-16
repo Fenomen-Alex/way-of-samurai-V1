@@ -26,6 +26,7 @@ const ProfileStatusWithHooks = ({updateStatus, ...props}) => {
         {
           !editMode &&
           <div>
+            <b>Status: </b>
             <span
               onDoubleClick={ () => toggleStatus() }
             >
