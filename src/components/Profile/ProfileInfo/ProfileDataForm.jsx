@@ -2,7 +2,7 @@ import React from "react";
 import {Form} from "react-final-form";
 import s from './ProfileInfo.module.css';
 import {createField, Inputarea, Textarea} from "../../Common/FormControls/FormControl";
-import {required, maxLengthCreator, composeValidators} from "../../../utils/validators";
+import {required} from "../../../utils/validators";
 import style from "../../Common/FormControls/FormControl.module.css";
 
 const ProfileDataForm = ({onSubmit, profile, error}) => {

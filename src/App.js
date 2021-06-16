@@ -17,7 +17,7 @@ const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileCo
 
 class SamuraiJSApp extends React.Component {
 
-  catchAllUnhandledErrors = (reason, promise) => {
+  catchAllUnhandledErrors = () => {
     alert("Some error occurred");
     //console.error(promiseRejectionEvent);
   }
