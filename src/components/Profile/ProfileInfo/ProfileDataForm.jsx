@@ -19,21 +19,21 @@ const ProfileDataForm = ({onSubmit, profile, error}) => {
           </div>
           }
           <div>
-            <b>Full name</b>: {createField("Full name", "fullName", Inputarea, [required])}
+            <b>Full name</b>: {createField("Full name", "fullName", Inputarea, [required], {initialValue: profile.fullName})}
           </div>
           <div>
-            <b>Looking for a job</b>: {createField("", "lookingForAJob",  Inputarea, [required], {type: "checkbox"})}
+            <b>Looking for a job</b>: {createField("", "lookingForAJob",  Inputarea, [required], {type: "checkbox", initialValue: profile.lookingForAJob})}
           </div>
 
           <div>
             <b>My professional skills</b>:
-            {createField("My professional skills", "lookingForAJobDescription", Textarea, [required])}
+            {createField("My professional skills", "lookingForAJobDescription", Textarea, [required], {initialValue: profile.lookingForAJobDescription})}
           </div>
 
 
           <div>
             <b>About me</b>:
-            {createField("About me", "aboutMe", Textarea, [required])}
+            {createField("About me", "aboutMe", Textarea, [required], {initialValue: profile.aboutMe})}
           </div>
           <div>
             <b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
