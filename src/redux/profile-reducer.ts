@@ -99,7 +99,7 @@ export const updateStatus = (status: string) => {
     }
 }
 
-export const savePhoto = (file: any) => async (dispatch: AppDispatch) => {
+export const savePhoto = (file: File) => async (dispatch: AppDispatch) => {
     let response = await profileAPI.savePhoto(file);
 
     if (response.data.resultCode === 0) {
