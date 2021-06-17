@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, Form} from "react-final-form";
-import {required, maxLengthCreator, composeValidators} from '../../../utils/validators';
+import { maxLengthCreator, composeValidators} from '../../../utils/validators';
 import {Textarea} from '../../Common/FormControls/FormControl';
 
 const AddNewPostForm = (props) => {
@@ -13,7 +13,7 @@ const AddNewPostForm = (props) => {
               component={Textarea}
               name="newPostText"
               placeholder="Type your post text here"
-              validate={composeValidators(required, maxLengthCreator(30))}
+              validate={composeValidators(maxLengthCreator(30))}
             />
           </div>
           <div>
